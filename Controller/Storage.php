@@ -9,7 +9,7 @@ class Storage
     public function __construct($conn){
         $this->conn = $conn;
     }
-    public function getAllStorage()
+    public function getAll()
     {
         $statament = $this->conn->prepare("SELECT * FROM $this->table_name");
         $statament->execute();
@@ -25,13 +25,13 @@ class Storage
             'name' => $name,
             'description' => $description
         ]);
-        var_dump($result);
+        // var_dump($result);
         if($result){
             // $_SESSION['message'] = "Omborxona yaratildi";
-            header("Location:".__dir__."../pages/omborxona/index.php");
+            header('Location:/pages/omborxona/index.php');
         }else{
             // $_SESSION['message'] = "Omborxona yaratilmadi";
-            header("Location:".__dir__."../pages/omborxona/create.php");
+            header('Location:/pages/omborxona/create.php');
         }
     }
 
@@ -43,9 +43,19 @@ class Storage
         // var_dump($storage);
         return $storage;
     }
-    public function update(int $storageId , array $data)
+    public function update(int $category_id , array $data)
     {
+        $sql = "UPDATE $this->table_name SET name = :name, description = :description WHERE id = :id";
 
+        $values = array(
+            ':name' => $data['name'],
+            ':description' => $data['description'],
+            ':id' => $category_id
+        );
+
+        $stmt = $this->conn->prepare($sql);
+        $result =  $stmt->execute($values);
+        header('Location:/pages/omborxona/index.php');
     }
 
     public function destroy( int $storageId)
@@ -54,5 +64,6 @@ class Storage
         $statament->execute([
             $storageId
         ]);
+        header('Location:/pages/omborxona/index.php');
     }
 }

@@ -1,4 +1,9 @@
-
+<?php
+  // require "session_start.php";
+  if($_SESSION['user'] == null){
+    header('Location:../../pages/auth/login.php');
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 

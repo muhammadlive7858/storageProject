@@ -1,21 +1,4 @@
-<?php
-require '../../autoload.php';
-$object = new Product($pdo);
-$result = $object->getAll();
-
-if($_SERVER['REQUEST_METHOD'] = 'POST' and isset($_POST['delete'])){
-    $object->destroy($_POST['id']);
-}
-
-?>
-
-
-<?php
-require "../../includes/head.php";
-?>
-<main id="main" class="main" style="min-height:100vh;">
-<h4>Hamma tavarlar sahifasi</h4>
-    <table class="table">
+<table class="table">
         <thead class="thead-dark">
             <tr>
                 <th scope="col">#</th>
@@ -60,10 +43,31 @@ require "../../includes/head.php";
         ?>
         </tbody>
     </table>
-    
 
-</main>
 
-<?php
-require "../../includes/footer.php";
-?>
+    $newSession = [];
+        $prod = $request->session()->get('karzinka1');
+        foreach($prod as $key => $value){
+            if($value['product_id'] == $id){
+                // Cache::increment(`karzinka1[$key][inputVal]`,intval($request->inputVal));
+                $shop = [
+                    'id'=>$value['id'],
+                    'product_id'=>$value['product_id'],
+                    'product_name'=>$value['product_name'],
+                    'product_count'=>$value['product_count'],
+                    'price'=>$value['price'],
+                    'inputVal'=>$request->inputVal
+                ];
+                array_push($newSession,$shop);
+            }else{
+                $shop = [
+                    'id'=>$value['id'],
+                    'product_id'=>$value['product_id'],
+                    'product_name'=>$value['product_name'],
+                    'product_count'=>$value['product_count'],
+                    'price'=>$value['price'],
+                    'inputVal'=>$value['inputVal']
+                ];
+                array_push($newSession,$shop);
+            }
+        }

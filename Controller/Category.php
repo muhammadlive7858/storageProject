@@ -2,14 +2,18 @@
 // require '../../session_start.php';
 require '../../database.php';
 
-class Category 
+class Category
 {
     private $conn;
     private $table_name = 'category';
     public function __construct($conn){
         $this->conn = $conn;
     }
-    public function getAllStorage()
+    static function redirect($url) {
+        header("Location: " . $url);
+        exit();
+    }
+    public function getAll()
     {
         $statament = $this->conn->prepare("SELECT * FROM $this->table_name");
         $statament->execute();
@@ -19,33 +23,36 @@ class Category
 
     public function add($name,$description)
     {
-        var_dump($_SESSION['message']);
+        // var_dump($_SESSION['message']);
         $statement = $this->conn->prepare("INSERT INTO $this->table_name(name,description) VALUES(:name,:description)");
         $result = $statement->execute([
             'name' => $name,
             'description' => $description
         ]);
-        var_dump($result);
-        if($result){
-            // $_SESSION['message'] = "Omborxona yaratildi";
-            header("Location:".__dir__."../pages/kategoriya/index.php");
-        }else{
-            // $_SESSION['message'] = "Omborxona yaratilmadi";
-            header("Location:".__dir__."../pages/kategoriya/create.php");
-        }
+        header('Location:/pages/kategoriya/index.php');
     }
 
     public function edit($id)
     {
         $statament = $this->conn->prepare("SELECT * FROM $this->table_name WHERE id = ?");
         $statament->execute([$id]);
-        $storage = $statament->fetch();
+        $category = $statament->fetch();
         // var_dump($storage);
-        return $storage;
+        return $category;
     }
     public function update(int $storageId , array $data)
     {
+        $sql = "UPDATE $this->table_name SET name = :name, description = :description WHERE id = :id";
 
+        $values = array(
+            ':name' => $data['name'],
+            ':description' => $data['description'],
+            ':id' => $storageId
+        );
+
+        $stmt = $this->conn->prepare($sql);
+        $result =  $stmt->execute($values);
+        header('Location:/pages/kategoriya/index.php');
     }
 
     public function destroy( int $storageId)
@@ -54,5 +61,6 @@ class Category
         $statament->execute([
             $storageId
         ]);
+        header('Location:/pages/kategoriya/index.php');
     }
 }

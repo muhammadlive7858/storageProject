@@ -9,43 +9,63 @@ class Product
     public function __construct($conn){
         $this->conn = $conn;
     }
-    public function getAllStorage()
+    public function getAll()
     {
         $statament = $this->conn->prepare("SELECT * FROM $this->table_name");
         $statament->execute();
-        $storage = $statament->fetchAll();
-        return $storage;
+        $product = $statament->fetchAll();
+        return $product;
     }
 
-    public function add($name,$description)
+    public function add($name,$storage_id,$category_id,$term,$cost,$price,$count)
     {
-        var_dump($_SESSION['message']);
-        $statement = $this->conn->prepare("INSERT INTO $this->table_name(name,description) VALUES(:name,:description)");
-        $result = $statement->execute([
-            'name' => $name,
-            'description' => $description
-        ]);
-        var_dump($result);
-        if($result){
-            // $_SESSION['message'] = "Omborxona yaratildi";
-            header("Location:".__dir__."../pages/omborxona/index.php");
-        }else{
-            // $_SESSION['message'] = "Omborxona yaratilmadi";
-            header("Location:".__dir__."../pages/omborxona/create.php");
-        }
+            $statement = $this->conn->prepare("INSERT INTO $this->table_name(name,storage_id,category_id,term,cost,price,count) VALUES(:name,:storage_id,:category_id,:term,:cost,:price,:count)");
+            $result = $statement->execute([
+                'name' => $name,
+                'storage_id' => $storage_id,
+                'category_id' => $category_id,
+                'term'=>$term,
+                'cost' => $cost,
+                'price' => $price,
+                'count' => $count
+            ]);
+            // var_dump($result);
+            if($result){
+                // $_SESSION['message'] = "Omborxona yaratildi";
+                header('Location:/pages/tavar/index.php');
+            }else{
+                // $_SESSION['message'] = "Omborxona yaratilmadi";
+                header('Location:/pages/tavar/create.php');
+            }
     }
 
     public function edit($id)
     {
         $statament = $this->conn->prepare("SELECT * FROM $this->table_name WHERE id = ?");
         $statament->execute([$id]);
-        $storage = $statament->fetch();
+        $product = $statament->fetch();
         // var_dump($storage);
-        return $storage;
+        return $product;
     }
-    public function update(int $storageId , array $data)
+    public function update(int $id , array $data)
     {
+        $sql = "UPDATE $this->table_name SET name = :name, storage_id = :storage_id,category_id = :category_id,term = :term,cost = :cost,price = :price,count = :count WHERE id = :id";
 
+        $values = array(
+            ':name' => $data['name'],
+            ':storage_id' => $data['storage_id'],
+            ':category_id' => $data['category_id'],
+            ':term' => $data['term'],
+            ':cost' => $data['cost'],
+            ':price' => $data['price'],
+            ':count' => $data['count'],
+
+            ':id' => $id
+        );
+
+        $stmt = $this->conn->prepare($sql);
+        $result =  $stmt->execute($values);
+        header('Location:/pages/tavar/index.php');
     }
 
     public function destroy( int $storageId)
@@ -54,5 +74,6 @@ class Product
         $statament->execute([
             $storageId
         ]);
+        header('Location:/pages/tavar/index.php');
     }
 }

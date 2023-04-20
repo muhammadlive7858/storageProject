@@ -13,13 +13,10 @@
     // find
     if(isset($_GET['id']))
     {
-        $statament = $pdo->prepare("SELECT * FROM storage WHERE id = ?");
-        $statament->execute([$id]);
-        $result = $statament->fetch();
-        // $result = $object->edit($_GET['id']);
-        echo"<pre>";
-        var_dump($result);
-        echo"</pre>";
+        $result = $object->edit($_GET['id']);
+        // echo"<pre>";
+        // var_dump($result);
+        // echo"</pre>";
     }
     
 ?>
@@ -27,9 +24,9 @@
     <h4>Omborxona tahrirlash sahifasi</h4>
             <form action="" class="form-control" method="POST">
                 <input type="hidden" name="edit" value="true">
-                <input type="hidden" name="id"  value="<?php $result['id']  ?>">
-                <input type="text" name="name" class="form-control m-1" placeholder="Nomini kiriting:" required value="<?php $result['name']   ?>">
-                <input type="text" name="description" class="form-control m-1" placeholder="Malumoti:" required value="<?php $result['description']   ?>"> 
+                <input type="hidden" name="id"  value="<?= $result['id']  ?>">
+                <input type="text" name="name" class="form-control m-1" placeholder="Nomini kiriting:" required value="<?= $result['name']   ?>">
+                <input type="text" name="description" class="form-control m-1" placeholder="Malumoti:" required value="<?= $result['description']   ?>"> 
                 <button class="btn btn-primary m-1">Saqlash</button>
             </form>
     </main>

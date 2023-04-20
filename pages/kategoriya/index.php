@@ -1,7 +1,7 @@
 <?php
 require '../../autoload.php';
 $object = new Category($pdo);
-$result = $object->getAllStorage();
+$result = $object->getAll();
 
 if($_SERVER['REQUEST_METHOD'] = 'POST' and isset($_POST['delete'])){
     $object->destroy($_POST['id']);
