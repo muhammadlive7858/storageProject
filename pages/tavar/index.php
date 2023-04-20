@@ -39,8 +39,8 @@ require "../../includes/head.php";
             <tr>
                 <th scope="row"><?=$i++   ?></th>
                 <td><?=$value['name']   ?></td>
-                <td><?=$value['storage_id']   ?></td>
-                <td><?=$value['category_id']   ?></td>
+                <td><?=$object->getStorage($value['storage_id'])['name']   ?></td>
+                <td><?=$object->getCategory($value['category_id'])['name']   ?></td>
                 <td><?=$value['term']   ?></td>
                 <td><?=$value['cost']   ?></td>
                 <td><?=$value['price']   ?></td>

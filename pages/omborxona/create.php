@@ -1,5 +1,4 @@
 <?php
-    require "../../includes/head.php";
     
     require "../../autoload.php";
     
@@ -10,6 +9,9 @@
         $object->add($name,$description);
     }
     
+?>
+<?php
+require "../../includes/head.php";
 ?>
     <main id="main" class="main" style="min-height:100vh;">
         <h4>Omborxona yaratish sahifasi</h4>

@@ -1,6 +1,7 @@
 <?php
 require '../../autoload.php';
 $object = new Report($pdo);
+$productObject = new Product($pdo);
 
 if($_SERVER['REQUEST_METHOD'] == 'GET' and isset($_GET['category_id'])){
     $id = $_GET['category_id'];
@@ -77,8 +78,8 @@ require "../../includes/head.php";
             <tr>
                 <th scope="row"><?=$i++   ?></th>
                 <td><?=$value['name']   ?></td>
-                <td><?=$value['storage_id']   ?></td>
-                <td><?=$value['category_id']   ?></td>
+                <td><?=$productObject->getStorage($value['storage_id'])['name']   ?></td>
+                <td><?=$productObject->getCategory($value['category_id'])['name']   ?></td>
                 <td><?=$value['term']   ?></td>
                 <td><?=$value['cost']   ?></td>
                 <td><?=$value['price']   ?></td>

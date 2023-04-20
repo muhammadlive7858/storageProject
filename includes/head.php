@@ -1,7 +1,7 @@
 <?php
   // require "session_start.php";
-  if($_SESSION['user'] == null){
-    header('Location:../../pages/auth/login.php');
+  if($_SESSION['user'] == null and empty($_SESSION['user'])){
+    // header('Location:../../pages/auth/login.php');
   }
 ?>
 <!DOCTYPE html>
@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <title>Dashboard</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 

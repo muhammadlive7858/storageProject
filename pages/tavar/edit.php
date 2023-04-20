@@ -1,5 +1,4 @@
 <?php
-    require "../../includes/head.php";
     
     require "../../autoload.php";
     // update
@@ -15,7 +14,10 @@
 
 
         $id = $_POST['id'];
-        $object->update($id,$data);
+        $responce = $object->update($id,$data);
+        if($responce){
+            header("Location: /pages/tavar/index.php");
+        }
     }
     // find
     if(isset($_GET['id']))
@@ -27,11 +29,9 @@
         $storage = $storage->getAll();
 
         $result = $object->edit($_GET['id']);
-        // echo"<pre>";
-        // var_dump($result);
-        // echo"</pre>";
     }
     
+    require "../../includes/head.php";
 ?>
     <main id="main" class="main" style="min-height:100vh;">
     <h4>Tavar tahrirlash sahifasi</h4>

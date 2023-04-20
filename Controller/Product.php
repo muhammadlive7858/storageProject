@@ -65,7 +65,8 @@ class Product
 
         $stmt = $this->conn->prepare($sql);
         $result =  $stmt->execute($values);
-        header('Location:/pages/tavar/index.php');
+        // header('Location:/pages/tavar/index.php');
+        return $result;
     }
 
     public function destroy( int $storageId)
@@ -75,5 +76,20 @@ class Product
             $storageId
         ]);
         header('Location:/pages/tavar/index.php');
+    }
+
+    public function getStorage($id){
+        $statament = $this->conn->prepare("SELECT * FROM storage WHERE id = ?");
+        $statament->execute([$id]);
+        $storage = $statament->fetch();
+        // var_dump($storage);
+        return $storage;
+    }
+    public function getCategory($id){
+        $statament = $this->conn->prepare("SELECT * FROM category WHERE id = ?");
+        $statament->execute([$id]);
+        $storage = $statament->fetch();
+        // var_dump($storage);
+        return $storage;
     }
 }

@@ -64,15 +64,23 @@ class Enter
     public function enter($data){
         $i = 0;
         $n = 0;
-        foreach($data['product'] as $key=>$id)
+        //  echo "<pre>";
+        // print_r($data);
+        // echo "</pre>";
+        // die();
+        foreach($data['product'] as $key1=>$id)
         {
-            foreach($data['count'] as $count){
+            foreach($data['count'] as $key2 =>$count){
                 
-                    if($i == $n){
-                        $sql = "UPDATE $this->table_name SET name = count = :count WHERE id = :id";
+                    if($key1 === $key2){
+                        $statament = $this->conn->prepare("SELECT * FROM $this->table_name WHERE id = ?");
+                        $statament->execute([$id]);
+                        $product = $statament->fetch();
+
+                        $sql = "UPDATE $this->table_name SET count = :count WHERE id = :id";
 
                         $values = array(
-                            ':count' => $count,
+                            ':count' =>$product['count'] + $count,
 
                             ':id' => $id
                         );
@@ -81,14 +89,13 @@ class Enter
                         $result =  $stmt->execute($values);
                     }
 
-                $n++;
+                    // $n++;
             }
-            $i++;
+            // $i++;
         }
+        unset($_SESSION['enter_products']);
+        header("Location: /pages/tavar/index.php");
 
-        // echo "<pre>";
-        // print_r($data);
-        // echo "</pre>";
-        // die();
+       
     }
 }

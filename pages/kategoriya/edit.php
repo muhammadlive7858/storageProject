@@ -1,5 +1,4 @@
 <?php
-    require "../../includes/head.php";
     
     require "../../autoload.php";
     // update
@@ -19,6 +18,9 @@
         // echo"</pre>";
     }
     
+?>
+<?php
+require "../../includes/head.php";
 ?>
     <main id="main" class="main" style="min-height:100vh;">
         <h4>Kategoriyalar tahrirlash sahifasi</h4>

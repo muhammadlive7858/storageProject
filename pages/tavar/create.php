@@ -1,5 +1,5 @@
 <?php
-    require "../../includes/head.php";
+    
     
     require "../../autoload.php";
     
@@ -23,6 +23,7 @@
         $object->add($name,$storage_id,$category_id,$term,$cost,$price,$count);
     }
     
+    require "../../includes/head.php";
 ?>
     <main id="main" class="main" style="min-height:100vh;">
         <h4>Tavar yaratish sahifasi</h4>

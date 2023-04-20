@@ -1,5 +1,4 @@
 <?php
-    require "../../includes/head.php";
     
     require "../../autoload.php";
 
@@ -17,6 +16,9 @@
     
     
     
+?>
+<?php
+require "../../includes/head.php";
 ?>
     <main id="main" class="main" style="min-height:100vh;">
         <h4>Kategoriyalar yaratish sahifasi</h4>

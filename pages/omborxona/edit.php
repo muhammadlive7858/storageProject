@@ -1,6 +1,4 @@
-<?php
-    require "../../includes/head.php";
-    
+<?php    
     require "../../autoload.php";
     // update
     $object = new Storage($pdo);
@@ -19,6 +17,9 @@
         // echo"</pre>";
     }
     
+?>
+<?php
+require "../../includes/head.php";
 ?>
     <main id="main" class="main" style="min-height:100vh;">
     <h4>Omborxona tahrirlash sahifasi</h4>

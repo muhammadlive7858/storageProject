@@ -9,6 +9,9 @@
     </a>
   </li><!-- End Dashboard Nav -->
   <!-- Omborxona -->
+<?php
+  if($_SESSION['user']['role'] == 'director'):
+?>
   <li class="nav-item">
     <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
       <i class="bi bi-menu-button-wide"></i><span>Omborxona</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -62,6 +65,9 @@
       </li>
     </ul>
   </li><!-- End Forms Nav -->
+<?php
+  endif
+?>
 <!-- kirim -->
 <li class="nav-item">
     <a class="nav-link collapsed" href="../../pages/kirim/index.php">
@@ -70,12 +76,18 @@
     </a>
 </li>
 <!-- Hisobot -->
+<?php
+  if($_SESSION['user']['role'] == 'director'):
+?>
 <li class="nav-item">
     <a class="nav-link collapsed" href="../../pages/hisobot/index.php">
       <i class="bi bi-calculator"></i>
       <span>Hisobot</span>
     </a>
 </li>
+<?php
+  endif;
+?>
 <li class="nav-heading">Pages</li>
 
   <li class="nav-item">
@@ -84,13 +96,18 @@
       <span>Profile</span>
     </a>
   </li><!-- End Profile Page Nav -->
-
+<?php
+  if($_SESSION['user']['role'] == 'director'):
+?>
   <li class="nav-item">
     <a class="nav-link collapsed" href="../../pages/auth/register.php">
       <i class="bi bi-card-list"></i>
       <span>Register</span>
     </a>
   </li><!-- End Register Page Nav -->
+<?php
+  endif;
+?>
 
   <li class="nav-item">
     <a class="nav-link collapsed" href="../../pages/auth/login.php">
