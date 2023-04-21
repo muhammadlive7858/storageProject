@@ -38,7 +38,7 @@ require "../../includes/head.php";
                     <form action="" method="POST">
                         <input type="hidden" name="delete">
                         <input type="hidden" name="id" value="<?= $value['id']  ?>">
-                        <button class="btn btn-danger">O'chirish</button>
+                        <button class="btn btn-danger" onclick="confirm('Haqiqatdan ham o\'chirmoqchimisiz?')">O'chirish</button>
                     </form>
                     <a href="edit.php?id=<?=$value['id'] ?>" class="btn btn-success">Tahrirlash</a>
                 </td>

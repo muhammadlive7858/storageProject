@@ -95,7 +95,9 @@ class Enter
         }
         unset($_SESSION['enter_products']);
         header("Location: /pages/tavar/index.php");
-
-       
+    }
+    public function clear()
+    {
+        unset($_SESSION['enter_products']);
     }
 }

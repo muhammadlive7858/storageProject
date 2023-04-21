@@ -1,7 +1,7 @@
 <?php
   // require "session_start.php";
   if($_SESSION['user'] == null and empty($_SESSION['user'])){
-    // header('Location:../../pages/auth/login.php');
+    header('Location:../../pages/auth/login.php');
   }
 ?>
 <!DOCTYPE html>

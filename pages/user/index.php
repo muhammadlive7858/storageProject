@@ -1,6 +1,6 @@
 <?php
 require '../../autoload.php';
-$object = new Product($pdo);
+$object = new User($pdo);
 $result = $object->getAll();
 
 if($_SERVER['REQUEST_METHOD'] = 'POST' and isset($_POST['delete'])){
@@ -8,8 +8,6 @@ if($_SERVER['REQUEST_METHOD'] = 'POST' and isset($_POST['delete'])){
 }
 
 ?>
-
-
 <?php
 require "../../includes/head.php";
 ?>
@@ -20,12 +18,9 @@ require "../../includes/head.php";
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
-                <th scope="col">Omborxona</th>
-                <th scope="col">Kategoriya</th>
-                <th scope="col">Muddati</th>
-                <th scope="col">Tannarx</th>
-                <th scope="col">Narx</th>
-                <th scope="col">Soni</th>
+                <th scope="col">Email</th>
+                <th scope="col">Role</th>
+                <th scope="col">Password</th>
 
                 <th scope="col">Action</th>
             </tr>
@@ -39,12 +34,9 @@ require "../../includes/head.php";
             <tr>
                 <th scope="row"><?=$i++   ?></th>
                 <td><?=$value['name']   ?></td>
-                <td><?=$object->getStorage($value['storage_id'])['name']   ?></td>
-                <td><?=$object->getCategory($value['category_id'])['name']   ?></td>
-                <td><?=$value['term']   ?></td>
-                <td><?=$value['cost']   ?></td>
-                <td><?=$value['price']   ?></td>
-                <td><?=$value['count']   ?></td>
+                <td><?=$value['email']   ?></td>
+                <td><?=$value['role']   ?></td>
+                <td><?=$value['password']   ?></td>
 
                 <td>
                     <form action="" method="POST">

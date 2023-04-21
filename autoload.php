@@ -11,6 +11,8 @@ require 'Controller/Enter.php';
 
 require 'Controller/AuthController.php';
 
+require 'Controller/User.php';
+
 require 'database.php';
 
 // echo "<pre>";

@@ -21,6 +21,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' and isset($_POST['enter_product']))
 
     $object->enter($data);
 }
+if($_SERVER['REQUEST_METHOD'] == 'GET' and isset($_GET['clear'])){
+    $object->clear();
+}
+
 ?>
 
 
@@ -74,11 +78,12 @@ require "../../includes/head.php";
                 <input type="text"  class="form-control m-1 w-25" placeholder="Mavjud :"  value="<?=$product['count']  ?>" readonly>
                 <input type="number" class="form-control m-1 w-25" placeholder="Kirim soni:" name="count[]" required>
             </div>
+            <button class="btn btn-primary m-1">Kirim</button>
+            <a href="?clear=true" class="btn btn-danger" onclick="confirm('Haqiqatdan ham o\'chirmoqchimisiz?')">Tozalash</a>
     <?php
         endforeach;
         endif;
     ?>
-    <button class="btn btn-primary m-1">Kirim</button>
     </form>
 </main>
 

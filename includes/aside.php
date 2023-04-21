@@ -105,6 +105,12 @@
       <span>Register</span>
     </a>
   </li><!-- End Register Page Nav -->
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="../../pages/user/index.php">
+      <i class="bi bi-card-list"></i>
+      <span>Users</span>
+    </a>
+  </li>
 <?php
   endif;
 ?>
